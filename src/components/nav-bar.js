@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import './nav-bar.css'
-import tcc_title from '../img/tcc_title.svg'
 import upvote_white from '../img/upvote_white.svg'
 
 export class NavBar extends React.Component {
@@ -54,7 +53,7 @@ export class NavBar extends React.Component {
       <nav className="nav-container">
         <div className="nav-content">
           <div className="nav-title">
-            <Link to={'/'}><img src={tcc_title} alt="the creative crypto title"/></Link>
+            <Link to={'/'}><h1>TribeSteemUp</h1></Link>
           </div>
           <div className="nav-right">
             <div className="bitcoin-price">

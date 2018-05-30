@@ -44,19 +44,29 @@ export function getHtml(body, jsonMetadata = {}, returnType = 'Object', options 
   parsedJsonMetadata.image = parsedJsonMetadata.image || [];
 
   let parsedBody = body.replace(/<!--([\s\S]+?)(-->|$)/g, '(html comment removed: $1)');
-
   parsedBody = parsedBody.replace(/^\s+</gm, '<');
 
-  parsedBody.replace(imageRegex, img => {
-    if (_.filter(parsedJsonMetadata.image, i => i.indexOf(img) !== -1).length === 0) {
-      parsedJsonMetadata.image.push(img);
-    }
-  });
+  if(parsedJsonMetadata.image !== undefined) {
+    parsedBody.replace(imageRegex, img => {
+      if (_.filter(parsedJsonMetadata.image, i => i.indexOf(img) !== -1).length === 0) {
+        parsedJsonMetadata.image.push(img);
+      }
+    });
+  }
 
+  let dtubeImg = parsedBody.match(dtubeImageRegex)
+  if (dtubeImg !== null) {
+    let arr = dtubeImg[0].split('src="')
+    dtubeImg = arr[0] + 'src="https://cdn.steemitimages.com/0x0/' + arr[1]
+    console.log(dtubeImg)
+  } else {
+    dtubeImg = ''
+  }
+    
   const htmlReadyOptions = { mutate: true, resolveIframe: returnType === 'text' };
   parsedBody = remarkable.render(parsedBody);
   parsedBody = htmlReady(parsedBody, htmlReadyOptions).html;
-  parsedBody = parsedBody.replace(dtubeImageRegex, '');
+  parsedBody = parsedBody.replace(dtubeImageRegex, dtubeImg);
   parsedBody = sanitizeHtml(parsedBody, sanitizeConfig({}));
   if (returnType === 'text') {
     return parsedBody;

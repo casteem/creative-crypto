@@ -67,7 +67,7 @@ const getNewsfeedError = error => ({
 
 function getPosts () {
   return new Promise((res, rej) => {
-    steem.api.getDiscussionsByBlog({tag: 'creativecrypto', limit: 50}, function (err, result) {
+    steem.api.getDiscussionsByBlog({tag: 'tribesteemup', limit: 50}, function (err, result) {
       if (err) rej(err)
       else res(result)
     })
@@ -77,15 +77,15 @@ function getPosts () {
 function getPost (permlink) {
   return new Promise((res, rej) => {
     const currentDate = new Date().toISOString().split('.')[0]
-    steem.api.getDiscussionsByAuthorBeforeDate('creativecrypto', permlink, currentDate, 1, function (err, result) {
+    steem.api.getDiscussionsByAuthorBeforeDate('tribesteemup', permlink, currentDate, 1, function (err, result) {
       if (err) rej(err)
       else res(result)
     })
   })
 }
-
+// TODO: What should I do with the below function?
 async function getNewsfeed () {
-  const response = await fetch('https://creative-crypto-api.herokuapp.com/')
+  const response = await fetch('http://localhost:8080')
   const data = await response.json()
   return data
 }
@@ -114,20 +114,50 @@ function formatPostData(postData) {
   let isDtube = false
   let isDlive = false
   let isBusy = false
+  // let ipfsUrl = ""
+
   if (typeof jsonMetadata.community !=='undefined')
     isBusy = true
   if (typeof jsonMetadata.video !== 'undefined')
     isDtube = true
   if (jsonMetadata.tags[0] === 'dlive')
     isDlive = true
-
   let image
   if (isDlive)
     image = jsonMetadata.thumbnail
+  else if (isDtube){
+    try {
+      image = bodyHtml.match(/<img.*?src=['"](.*?)['"]/)[0]
+    } catch(err) {
+      console.log("dtube post error")
+      console.log(body)
+      console.log("-------------------------------")
+      console.log(bodyHtml)
+      image = "https://cdn.steemitimages.com/DQmcQPacAvFqbdycBEKE5Ap1z9JvDK84NDmQgJqh7QQvv76/no-image-here.png" // default no image here.
+    }
+  }
   else if (isBusy)
-    image = bodyHtml.match(/<img.*?src=['"](.*?)['"]/)[1]
-  else
-    image = jsonMetadata.image[0]
+    try{
+      image = bodyHtml.match(/<img.*?src=['"](.*?)['"]/)[1]
+
+    } catch(err) {
+      console.log("isBusy Image Error")
+      try {
+        image = jsonMetadata.image[0]
+      } catch(err) {
+        console.log(bodyHtml)
+        // image = "https://cdn.steemitimages.com/DQmcQPacAvFqbdycBEKE5Ap1z9JvDK84NDmQgJqh7QQvv76/no-image-here.png" // default no image here.
+      }
+    }
+  else {
+    try {
+      image = jsonMetadata.image[0]
+    } catch(err) {
+      console.log(bodyHtml)
+      console.log("else Image Error")
+      // image = "https://cdn.steemitimages.com/DQmcQPacAvFqbdycBEKE5Ap1z9JvDK84NDmQgJqh7QQvv76/no-image-here.png" // default no image here.
+    }
+  }
 
   const pendingPayoutValue =
     Number(postData.pending_payout_value.slice(0, postData.pending_payout_value.indexOf(' '))).toFixed(2)

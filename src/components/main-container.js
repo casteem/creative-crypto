@@ -1,5 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import './main-container.css'
 
@@ -16,3 +18,15 @@ export function MainContainer () {
     </main>
   )
 }
+
+function mapStateToProps (state) {
+  return {
+    loading: state.loading,
+  }
+}
+
+// needed to connect redux in this way to
+// let react router function properly
+export default withRouter(
+  connect(mapStateToProps)(MainContainer)
+)

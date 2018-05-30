@@ -129,10 +129,6 @@ function formatPostData(postData) {
     try {
       image = bodyHtml.match(/<img.*?src=['"](.*?)['"]/)[0]
     } catch(err) {
-      console.log("dtube post error")
-      console.log(body)
-      console.log("-------------------------------")
-      console.log(bodyHtml)
       image = "https://cdn.steemitimages.com/DQmcQPacAvFqbdycBEKE5Ap1z9JvDK84NDmQgJqh7QQvv76/no-image-here.png" // default no image here.
     }
   }
@@ -141,21 +137,17 @@ function formatPostData(postData) {
       image = bodyHtml.match(/<img.*?src=['"](.*?)['"]/)[1]
 
     } catch(err) {
-      console.log("isBusy Image Error")
       try {
         image = jsonMetadata.image[0]
       } catch(err) {
-        console.log(bodyHtml)
-        // image = "https://cdn.steemitimages.com/DQmcQPacAvFqbdycBEKE5Ap1z9JvDK84NDmQgJqh7QQvv76/no-image-here.png" // default no image here.
+        image = "https://cdn.steemitimages.com/DQmcQPacAvFqbdycBEKE5Ap1z9JvDK84NDmQgJqh7QQvv76/no-image-here.png" // default no image here.
       }
     }
   else {
     try {
       image = jsonMetadata.image[0]
     } catch(err) {
-      console.log(bodyHtml)
-      console.log("else Image Error")
-      // image = "https://cdn.steemitimages.com/DQmcQPacAvFqbdycBEKE5Ap1z9JvDK84NDmQgJqh7QQvv76/no-image-here.png" // default no image here.
+      image = "https://cdn.steemitimages.com/DQmcQPacAvFqbdycBEKE5Ap1z9JvDK84NDmQgJqh7QQvv76/no-image-here.png" // default no image here.
     }
   }
 

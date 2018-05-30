@@ -58,7 +58,6 @@ export function getHtml(body, jsonMetadata = {}, returnType = 'Object', options 
   if (dtubeImg !== null) {
     let arr = dtubeImg[0].split('src="')
     dtubeImg = arr[0] + 'src="https://cdn.steemitimages.com/0x0/' + arr[1]
-    console.log(dtubeImg)
   } else {
     dtubeImg = ''
   }

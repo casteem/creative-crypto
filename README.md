@@ -4,6 +4,7 @@ If you'd like to copy or fork this repo, there are only a few changes you'll hav
 
 - First run `npm install` to get all of the node modules installed. 
 - Then go to `src/actions/index.js`. In the `getPosts()` and `getPost()` functions, change the username to whichever Steem account you'd like to pull in posts from.
+- **Additional steps are needed. I will hash these out with the main developer**
 - After that it's just a matter of updating the branding and styling however you like!
 
 It is currently in development -- more details to come soon!

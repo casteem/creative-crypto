@@ -55,7 +55,7 @@ class PostFeed extends React.Component {
       else return [smallTile]
     })
 
-    function loadMore() {
+    function loadMore () {
       console.log('need to load more')
     }
 
@@ -68,7 +68,7 @@ class PostFeed extends React.Component {
         >
           {postGrid}
         </InfiniteScroll>
-    </div>
+      </div>
     )
   }
 }

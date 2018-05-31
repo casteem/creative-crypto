@@ -2,15 +2,13 @@
 
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-// import PropTypes from 'prop-types';
 import _ from 'lodash';
-// import classNames from 'classnames';
 import sanitizeHtml from 'sanitize-html';
 import Remarkable from 'remarkable';
 import embedjs from 'embedjs';
 import { jsonParse } from './formatter';
 import sanitizeConfig from './SanitizeConfig';
-import { imageRegex, dtubeImageRegex } from './regexHelpers';
+import { imageRegex } from './regexHelpers';
 import htmlReady from './steemitHtmlReady';
 import PostFeedEmbed from './PostFeedEmbed';
 import './Body.less';
@@ -53,19 +51,13 @@ export function getHtml(body, jsonMetadata = {}, returnType = 'Object', options 
       }
     });
   }
-
-  let dtubeImg = parsedBody.match(dtubeImageRegex)
-  if (dtubeImg !== null) {
-    let arr = dtubeImg[0].split('src="')
-    dtubeImg = arr[0] + 'src="https://cdn.steemitimages.com/0x0/' + arr[1]
-  } else {
-    dtubeImg = ''
-  }
     
   const htmlReadyOptions = { mutate: true, resolveIframe: returnType === 'text' };
   parsedBody = remarkable.render(parsedBody);
   parsedBody = htmlReady(parsedBody, htmlReadyOptions).html;
-  parsedBody = parsedBody.replace(dtubeImageRegex, dtubeImg);
+  // this line originally uncommented in Busy code base
+  // commented here so thumbnail shows up in DTube post body
+  // parsedBody = parsedBody.replace(dtubeImageRegex, '');
   parsedBody = sanitizeHtml(parsedBody, sanitizeConfig({}));
   if (returnType === 'text') {
     return parsedBody;

@@ -20,6 +20,10 @@ a {
   color: var(--text-color);
 }
 
+h1 {
+  color: white;
+}	
+
 .App {
   text-align: center;
 }

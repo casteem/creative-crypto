@@ -53,7 +53,7 @@ export class NavBar extends React.Component {
       <nav className="nav-container">
         <div className="nav-content">
           <div className="nav-title">
-            <Link to={'/'}><h1>TribeSteemUp</h1></Link>
+            <Link to={'/'}><h1>TribeSteemUp - Community Empowerment</h1></Link>
           </div>
           <div className="nav-right">
             <div className="bitcoin-price">

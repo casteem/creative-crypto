@@ -164,3 +164,9 @@
     font-size: 18px;
   }
 }
+
+@media only screen and (max-width: 499px) {
+  h1 {
+    font-size: 1.3em;
+    }
+}

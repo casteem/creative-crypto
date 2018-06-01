@@ -14,6 +14,7 @@ export function MainContainer () {
     <main className='main-container'>
       <Switch>
         <Route exact path="/" component={ConnectedPostFeed}/>
+        <Route exact path="/about" component={About}/>
         <Route exact path="/:postId" component={ConnectedSinglePost}/>
       </Switch>
     </main>

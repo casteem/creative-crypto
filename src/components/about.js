@@ -25,7 +25,7 @@ export class About extends React.Component {
       return (
         <div key={index} className="portrait">
           <img src={person.portrait} alt={person.name}
-               className={person.name === '@kr-marketing' || '@keepit' || 'Snbox' ? 'kr-marketing' : undefined}/>
+               className={person.name === '@tribesteemup' || '@kennyskitchen' || 'tribesteemup' ? 'kennykitchen' : undefined}/>
           <div className="name">{person.name}</div>
           <div className="title">{person.title}</div>
         </div>

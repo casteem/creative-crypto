@@ -1,3 +1,5 @@
+import React from 'react'
+import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
 import logo from '../img/about/180407 The Creative Crypto Logo.svg'
 import tribesteemup from '../img/about/pic-tribesteemup.png'

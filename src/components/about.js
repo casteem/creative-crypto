@@ -12,11 +12,11 @@ export class About extends React.Component {
   render () {
     const portraitInfo = [{
       portrait: tribesteemup,
-      name: 'TribeSteemUp',
+      name: '@tribeS#steemup',
       title: 'Developed by Kennyskitchen'
     }, {
       portrait: kenny,
-      name: 'Kenny Palurintano',
+      name: '@kennyskitchen',
       title: 'Founder'
     }
     ]
@@ -31,6 +31,9 @@ export class About extends React.Component {
         </div>
       )
     })
+
+    const url = 'https://thecreativecrypto.us17.list-manage.com/subscribe/post?u=d8283fcff4083b6d35965e1b3&amp;id=b53263b57e'
+    const SimpleForm = () => <MailchimpSubscribe url={url}/>
 
 
     return (

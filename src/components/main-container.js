@@ -7,6 +7,7 @@ import './main-container.css'
 
 import { ConnectedPostFeed } from './post-feed'
 import { ConnectedSinglePost } from './single-post'
+import { About } from './about'
 
 export function MainContainer () {
   return (

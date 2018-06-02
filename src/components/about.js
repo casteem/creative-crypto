@@ -57,10 +57,6 @@ export class About extends React.Component {
 		</p>
             </div>
           </div>
-
-
-              <hr>
-
           <div className="about-portraits">
             {portraitComponents}
           </div>

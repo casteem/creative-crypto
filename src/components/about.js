@@ -1,6 +1,5 @@
 import React from 'react'
 
-import logo from '../img/about/180407 The Creative Crypto Logo.svg'
 import tribesteemup from '../img/about/pic-tribesteemup.png'
 import kenny from '../img/about/pic-kennyskitchen.png'
 
@@ -58,11 +57,10 @@ export class About extends React.Component {
 		</p>
             </div>
           </div>
-          <div className="about-hr">
-            <div className="logo-background">
-              <img src={logo} alt="creative crypto logo"/>
-            </div>
-          </div>
+
+
+              <hr>
+
           <div className="about-portraits">
             {portraitComponents}
           </div>

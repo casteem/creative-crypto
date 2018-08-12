@@ -21,6 +21,10 @@ RUN npm install --save
 
 COPY . /var/app
 
+RUN npm run build
+
+RUN npm run build
+
 ENV PORT 3000
 
 EXPOSE 3000
@@ -28,4 +32,4 @@ EXPOSE 3000
 #ENTRYPOINT ["echo","node get-claimed-rewards.js username"]
 #CMD ["/bin/sh"]
 
-#CMD [ "node", "frontrun.js" ]
+CMD [ "npm", "run", "start" ]

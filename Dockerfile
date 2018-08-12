@@ -23,7 +23,7 @@ COPY . /var/app
 
 RUN npm run build
 
-RUN npm run build
+RUN npm run test
 
 ENV PORT 3000
 
